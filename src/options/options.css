@@ -1,0 +1,12 @@
+body {
+  margin: 15px;
+}
+label {
+  font-weight: normal;
+  font-size: 15px;
+  display: inline;
+  padding-right: 5px;
+}
+input {
+  max-width: 400px;
+}
