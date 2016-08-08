@@ -1,12 +1,18 @@
-body {
-  margin: 15px;
+.settings-component {
+  padding-bottom: 20px;
+}
+.title {
+  padding-bottom: 10px;
 }
 label {
   font-weight: normal;
-  font-size: 15px;
-  display: inline;
-  padding-right: 5px;
 }
-input {
-  max-width: 400px;
+.btn-default {
+  display: inline;
+}
+.input-group {
+  width: 400px;
+}
+.settings-component-content {
+  padding-left: 15px;
 }

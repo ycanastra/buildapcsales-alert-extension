@@ -2,36 +2,65 @@
 
 <head>
 
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.1.0/milligram.min.css">
-
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="options.css">
 
 	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/jquery/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
 </head>
 
 
 <body>
 
-	<header>
-		<h2>Settings</h2>
-	</header>
+	<div class="container">
 
-	<div>
-		<form>
-			<label>Email:</label>
-			<input type="text" id="emailInput" placeholder="Type in your email"></input>
-			<button type="submit" id="emailButton">Submit</button>
-		</form>
-		<label>Current email:</label>
-		<label id="emailLabel"></label><br><br>
-		<label>Emails will be sent from "noreply@buildapcsales-alert.com".<br>
-		It may end up going into the spam folder, so be sure to whitelist it.</label>
+		<!-- <div class="alert alert-success">
+	  	<strong>Success!</strong> Indicates a successful or positive action.
+		</div> -->
+		<div class="title">
+			<header>
+				<h1>Settings</h1>
+			</header>
+		</div>
+
+		<div>
+			<form>
+				<div class="settings-component">
+					<div class="settings-component-title">
+						<h4>Send notifications via:</h4>
+					</div>
+					<div class="settings-component-content">
+						<input type="checkbox"></input>
+						<label>Email</label><br>
+						<input type="checkbox"></input>
+						<label>Chrome Notifications</label><br>
+					</div>
+				</div>
+
+				<div class="settings-component">
+					<div class="settings-component-title">
+						<h4>Email:</h4>
+					</div>
+
+					<div class="settings-component-content">
+						<div class="input-group">
+	   					<input type="text" class="form-control" id="emailInput" placeholder="email@example.com"></input>
+	   					<span class="input-group-btn">
+	        			<button type="submit" class="btn btn-default" id="emailButton">Submit</button>
+	   					</span>
+						</div>
+					</div>
+				</div>
+			</form>
+
+			<label id="emailLabel"></label><br><br>
+			<label>Emails will be sent from "noreply@buildapcsales-alert.com".<br>
+			It may end up going into the spam folder, so be sure to whitelist it.</label>
+		</div>
+
 	</div>
-
 </body>
 
 <script src="options.js"></script>
