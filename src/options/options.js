@@ -1,6 +1,13 @@
 $(document).ready(function(){
 	checkUserId();
 	initEmailInfo();
+
+  restoreSettings();
+
+  $('input').on('change', function() {
+    saveSettings();
+  });
+
 	$('#email-success').hide();
 
 	$('a.close').on('click', function() {
@@ -26,6 +33,20 @@ $(document).ready(function(){
 		processEmail(email);
 	})
 });
+
+function saveSettings() {
+  var emailIsChecked = $('#checkbox-email').is(':checked');
+  chrome.storage.sync.set({checkboxEmail: emailIsChecked});
+}
+
+function restoreSettings() {
+  chrome.storage.sync.get('checkboxEmail', function(item) {
+    var emailIsChecked = item.checkboxEmail;
+    if (emailIsChecked) {
+      $('#checkbox-email').prop('checked', true);
+    }
+  });
+}
 
 function getRandomToken() {
 	var randomPool = new Uint8Array(32);
