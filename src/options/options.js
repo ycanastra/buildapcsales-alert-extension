@@ -1,6 +1,11 @@
 $(document).ready(function(){
   checkUserId()
   initEmailInfo()
+  $('#email-success').hide();
+
+  $('a.close').on('click', function() {
+    $(this).parent().slideUp(200);
+  })
 
   $('#emailInput').keypress(function(e) {
     if(e.which == 13) {
@@ -39,7 +44,7 @@ function getRandomToken() {
 
 function processEmail(email) {
   chrome.storage.sync.get('userid', function(items) {
-    userid = items.userid
+    userid = items.userid;
 
     if (userid) {
       $.ajax({
@@ -48,37 +53,27 @@ function processEmail(email) {
         data: {userid: userid, email: email},
         dataType: 'json',
         success: function(rsp, status) {
-          setEmailLabel(email)
+          $('#email-success').slideDown(200);
         }
       });
     }
-  })
-}
-
-function setEmailLabel(email) {
-  if (email) {
-    emailLabel = document.getElementById('emailLabel')
-    $.when($('#emailLabel').fadeOut(400)).done(function() {
-      emailLabel.innerHTML = email
-      $('#emailLabel').fadeIn()
-    });
-  }
+  });
 }
 
 function checkUserId() {
 	chrome.storage.sync.get('userid', function(items) {
-		userid = items.userid
+		userid = items.userid;
 
 		if (!userid) {
-			userid = getRandomToken()
-			chrome.storage.sync.set({userid: userid})
+			userid = getRandomToken();
+			chrome.storage.sync.set({userid: userid});
 		}
-	})
+	});
 }
 
 function initEmailInfo() {
   chrome.storage.sync.get('userid', function(items) {
-    userid = items.userid
+    userid = items.userid;
 
     if (userid) {
       $.ajax({
@@ -89,41 +84,32 @@ function initEmailInfo() {
         success: function(rsp, status) {
 
           if (rsp) {
-            email = rsp[0]['email']
-            initEmailLabel(email)
-            initEmailInput(email)
-            initEmailButton(email)
+            email = rsp[0]['email'];
+            initEmailInput(email);
+            initEmailButton(email);
           }
 					else {
-						emailButton = document.getElementById('emailButton')
-						emailButton.disabled = true
+						emailButton = document.getElementById('emailButton');
+						emailButton.disabled = true;
 					}
         }
       });
     }
-  })
-}
-
-function initEmailLabel(email) {
-  emailLabel = document.getElementById('emailLabel')
-  emailLabel.innerHTML = email
+  });
 }
 
 function initEmailInput(email) {
-  emailInput = document.getElementById('emailInput')
-  emailInput.value = email
+  emailInput = document.getElementById('emailInput');
+  emailInput.value = email;
 }
 
 function initEmailButton(email) {
   emailButton = document.getElementById('emailButton')
 
-	console.log(email)
-
   if (email.indexOf('@') > -1) {
-    emailButton.disabled = false
+    emailButton.disabled = false;
   }
   else {
-    emailButton.disabled = true
+    emailButton.disabled = true;
   }
-
 }
