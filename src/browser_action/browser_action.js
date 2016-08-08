@@ -1,6 +1,8 @@
 
 $(document).ready(function(){
-	initPopup()
+	initPopup();
+
+	checkSettings();
 
   $('#keywordInput').keypress(function(e) {
     if(e.which == 13) {
@@ -23,6 +25,18 @@ $(document).ready(function(){
 		$(this).closest('label').remove()
 	});
 });
+
+function checkSettings() {
+	chrome.storage.sync.get('checkboxEmail', function(item) {
+		var emailIsChecked = item.checkboxEmail;
+		if (!emailIsChecked) {
+			$('#notification-note').show();
+		}
+		else {
+			$('#notification-note').hide();
+		}
+	});
+}
 
 function initPopup() {
 	checkUserId()
