@@ -8,8 +8,6 @@ $(document).ready(function(){
     saveSettings();
   });
 
-	$('#email-success').hide();
-
 	$('a.close').on('click', function() {
 		$(this).parent().slideUp(200);
 	})
@@ -69,7 +67,15 @@ function processEmail(email) {
 				data: {userid: userid, email: email},
 				dataType: 'json',
 				success: function(rsp, status) {
-					$('#email-success').slideDown(200);
+					toastr.options = {
+					  "positionClass": "toast-bottom-center",
+					  "showMethod": "fadeIn",
+					  "hideMethod": "fadeOut",
+						"showDuration": "500",
+					  "hideDuration": "500",
+					  "timeOut": "5000"
+					}
+					toastr.success('Email has been submitted successfully!');
 				}
 			});
 		}
