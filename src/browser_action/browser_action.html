@@ -2,27 +2,37 @@
 
 <head>
 
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+	<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.1.0/milligram.min.css">
 
 	<link rel="stylesheet" type="text/css" href="browser_action.css">
 
 	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/jquery/jquery-migrate.min.js"></script> -->
+
+
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/toastr.min.css">
+	<link rel="stylesheet" type="text/css" href="browser_action.css">
+
+	<script type="text/javascript" src="/js/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/jquery/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/toastr.min.js"></script>
 
 </head>
 
 
 <body>
 
-	<div id="mainPopup">
-		<p id="notification-note">You currently do not have any notications settings checked in your options page.</p>
-		<form style="text-align:center;">
-			<input type="text" placeholder="Add a keyword" id="keywordInput"></input>
+	<div class="container">
+		<!-- <p id="notification-note">You currently do not have any notications settings checked in your options page.</p> -->
+		<form>
+			<input type="text" placeholder="Add a keyword" id="keyword-input" class="form-control"></input>
 		</form>
-		<p id="errorMessage"></p>
-		<div id="keywordList">
+		<!-- <p id="errorMessage"></p> -->
+		<div id="keyword-list">
 		</div>
 	</div>
 
