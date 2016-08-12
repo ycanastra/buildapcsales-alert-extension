@@ -4,11 +4,15 @@
 }
 .form-control {
   margin: 0px;
-  font-style: italic;
   font-size: 25px;
   padding: 5px;
   height: 45px;
 }
+
+.form-control::-webkit-input-placeholder {
+   font-style: italic;
+}
+
 .keyword-list-item {
   height: 45px;
   padding: 5px;
