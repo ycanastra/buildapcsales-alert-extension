@@ -8,11 +8,9 @@
   padding: 5px;
   height: 45px;
 }
-
 .form-control::-webkit-input-placeholder {
    font-style: italic;
 }
-
 .keyword-list-item {
   height: 45px;
   padding: 5px;
