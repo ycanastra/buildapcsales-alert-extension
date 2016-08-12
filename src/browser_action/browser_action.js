@@ -5,15 +5,12 @@ $(document).ready(function(){
 	$('#keyword-input').keypress(function(event) {
 		if (event.which == 13) {
 			event.preventDefault()
-			var keyword = $(this).val()
-			addKeywordRequest(keyword);
+			addKeywordRequest($(this));
 		}
 	});
 	$('#keyword-list').on('click', '.close-button', function(event) {
 		event.preventDefault();
-		var keyword = $(this).parent().text().slice(0, -1);
-		deleteKeywordRequest(keyword);
-		deleteKeyword($(this));
+		deleteKeywordRequest($(this));
 	});
 });
 
@@ -29,7 +26,8 @@ function addKeyword(keyword) {
 	$('#keyword-list').prepend(div);
 }
 
-function addKeywordRequest(keyword) {
+function addKeywordRequest(keywordInput) {
+	var keyword = keywordInput.val();
 	chrome.storage.sync.get('userid', function(items) {
 		userid = items.userid;
 		if (userid) {
@@ -40,13 +38,16 @@ function addKeywordRequest(keyword) {
 				dataType: 'json',
 				success: function(rsp, status) {
 					addKeyword(keyword);
+					keywordInput.val('');
 				}
 			});
 		}
 	});
 }
 
-function deleteKeywordRequest(keyword) {
+function deleteKeywordRequest(closeButton) {
+	var keywordListItem = closeButton.parent().parent();
+	var keyword = keywordListItem.text().slice(0, -1);
 	chrome.storage.sync.get('userid', function(items) {
 		userid = items.userid;
 		if (userid) {
@@ -56,16 +57,11 @@ function deleteKeywordRequest(keyword) {
 				data: {userid: userid, keyword: keyword},
 				dataType: 'json',
 				success: function(rsp, status) {
-
+					keywordListItem.remove();
 				}
 			});
 		}
 	});
-}
-
-function deleteKeyword(closeButton) {
-	var keywordItem = closeButton.parent().parent();
-	keywordItem.remove();
 }
 
 function checkSettings() {
