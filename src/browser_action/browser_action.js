@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	initPopup();
-	// checkSettings();
+	checkSettings();
 
 	$('#keyword-input').keypress(function(event) {
 		if (event.which == 13) {
@@ -68,10 +68,10 @@ function checkSettings() {
 	chrome.storage.sync.get('checkboxEmail', function(item) {
 		var emailIsChecked = item.checkboxEmail;
 		if (!emailIsChecked) {
-			$('#notification-note').show();
+			$('#notification-warning').show();
 		}
 		else {
-			$('#notification-note').hide();
+			$('#notification-warning').hide();
 		}
 	});
 }
