@@ -17,8 +17,13 @@
 <body>
 
 	<div class="container">
+
 		<form>
-			<input type="text" placeholder="Add a keyword" data-toggle="popover" id="keyword-input" class="form-control"></input>
+			<div class="form-group has-feedback">
+		    <label class="control-label"></label>
+				<input type="text" placeholder="Add a keyword" data-toggle="popover" id="keyword-input" class="form-control"></input>
+				<span class="glyphicon glyphicon-question-sign form-control-feedback"></span>
+		  </div>
 		</form>
 		<div class="alert alert-danger" id="notification-warning">
 			You currently do not have any notifications settings checked. If you would like to recieve notifications, please make sure to check your options.
