@@ -15,13 +15,13 @@ $(document).ready(function(){
 });
 
 function addKeyword(keyword) {
-	var div = $('<div class="keyword-list-item"></div>');
-	var closeButton = $('<a class="close-button" href="#">&#10006;</a>');
+	var div = $('<div class="keyword-list-item icon-addon addon-lg"></div>');
 	var keywordLabel = $('<label class="keyword-label"></label>');
+	var closeButton = $('<label class="close-button glyphicon glyphicon-remove" title="Remove"></label>');
 
 	keywordLabel.html(keyword);
-	keywordLabel.append(closeButton);
 	div.append(keywordLabel);
+	div.append(closeButton);
 
 	$('#keyword-list').prepend(div);
 }
@@ -46,8 +46,8 @@ function addKeywordRequest(keywordInput) {
 }
 
 function deleteKeywordRequest(closeButton) {
-	var keywordListItem = closeButton.parent().parent();
-	var keyword = keywordListItem.text().slice(0, -1);
+	var keywordListItem = closeButton.parent();
+	var keyword = keywordListItem.text()
 	chrome.storage.sync.get('userid', function(items) {
 		userid = items.userid;
 		if (userid) {
