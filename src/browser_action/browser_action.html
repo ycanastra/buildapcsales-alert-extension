@@ -18,11 +18,13 @@
 
 	<div class="container">
 		<form>
-			<div class="icon-addon addon-lg">
+			<div class="icon-addon addon-lg" id="input-div">
 				<input type="text" placeholder="Add a keyword" class="form-control" id="keyword-input">
 				<label for="keyword-input" class="glyphicon glyphicon-question-sign"></label>
-			</div>
 		</form>
+		<div class="alert alert-danger" id="input-error">
+			Keyword already exists!
+		</div>
 		<div class="alert alert-warning" id="notification-warning">
 			You currently do not have any notifications enabled. If you would like to
 			recieve notifications, please make sure to check your options.

@@ -33,12 +33,22 @@ function addKeywordRequest(keywordInput) {
 		if (userid) {
 			$.ajax({
 				type: 'post',
-				url: 'http://159.203.229.225/buildapcsales-alert/php/process.php',
+				url: 'http://159.203.229.225/buildapcsales-alert/php/processnew.php',
 				data: {userid: userid, keyword: keyword},
 				dataType: 'json',
 				success: function(data) {
-					addKeyword(keyword);
-					keywordInput.val('');
+					var alreadyExists = data;
+					if (alreadyExists) {
+						$('#input-error').slideDown(200);
+						$("#input-div").addClass('has-error');
+					}
+					else {
+						addKeyword(keyword);
+						keywordInput.val('');
+					}
+				},
+				error: function(data) {
+					alert('error');
 				}
 			 });
 		}
@@ -79,6 +89,7 @@ function checkSettings() {
 function initPopup() {
 	checkUserId();
 	retrieveKeywordsRequest();
+	$('#input-error').hide();
 }
 
 function checkUserId() {
