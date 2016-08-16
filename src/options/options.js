@@ -2,11 +2,11 @@ $(document).ready(function(){
 	checkUserId();
 	initEmailInfo();
 
-  restoreSettings();
+	restoreSettings();
 
-  $('input').on('change', function() {
-    saveSettings();
-  });
+	$('input').on('change', function() {
+		saveSettings();
+	});
 
 	$('a.close').on('click', function() {
 		$(this).parent().slideUp(200);
@@ -33,17 +33,17 @@ $(document).ready(function(){
 });
 
 function saveSettings() {
-  var emailIsChecked = $('#checkbox-email').is(':checked');
-  chrome.storage.sync.set({checkboxEmail: emailIsChecked});
+	var emailIsChecked = $('#checkbox-email').is(':checked');
+	chrome.storage.sync.set({checkboxEmail: emailIsChecked});
 }
 
 function restoreSettings() {
-  chrome.storage.sync.get('checkboxEmail', function(item) {
-    var emailIsChecked = item.checkboxEmail;
-    if (emailIsChecked) {
-      $('#checkbox-email').prop('checked', true);
-    }
-  });
+	chrome.storage.sync.get('checkboxEmail', function(item) {
+		var emailIsChecked = item.checkboxEmail;
+		if (emailIsChecked) {
+			$('#checkbox-email').prop('checked', true);
+		}
+	});
 }
 
 function getRandomToken() {
@@ -68,12 +68,12 @@ function processEmail(email) {
 				dataType: 'json',
 				success: function(rsp, status) {
 					toastr.options = {
-					  "positionClass": "toast-bottom-center",
-					  "showMethod": "fadeIn",
-					  "hideMethod": "fadeOut",
+						"positionClass": "toast-top-right",
+						"showMethod": "fadeIn",
+						"hideMethod": "fadeOut",
 						"showDuration": "500",
-					  "hideDuration": "500",
-					  "timeOut": "5000"
+						"hideDuration": "500",
+						"timeOut": "5000"
 					}
 					toastr.success('Email has been submitted successfully!');
 				}
