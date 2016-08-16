@@ -27,6 +27,21 @@
 	width: 350px;
 	padding: 0px;
 }
+.options-container {
+	padding: 0px;
+	margin: 0px;
+	text-align: center;
+	font-weight: normal;
+}
+.options-anchor {
+	padding: 0px;
+	margin: 0px;
+	cursor: pointer;
+	color: black;
+}
+.options-anchor:hover {
+	color: black;
+}
 .alert-danger {
 	padding: 10px;
 	margin: 0px;
