@@ -36,11 +36,11 @@ function addKeywordRequest(keywordInput) {
 				url: 'http://159.203.229.225/buildapcsales-alert/php/process.php',
 				data: {userid: userid, keyword: keyword},
 				dataType: 'json',
-				success: function(rsp, status) {
+				success: function(data) {
 					addKeyword(keyword);
 					keywordInput.val('');
 				}
-			});
+			 });
 		}
 	});
 }
