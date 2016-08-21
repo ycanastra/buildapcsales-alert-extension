@@ -2,40 +2,40 @@
 
 <head>
 
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/css/toastr.min.css">
-	<link rel="stylesheet" type="text/css" href="browser_action.css">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/toastr.min.css">
+  <link rel="stylesheet" type="text/css" href="browser_action.css">
 
-	<script type="application/javascript" src="/js/jquery/jquery.min.js"></script>
-	<script type="application/javascript" src="/js/jquery/jquery-migrate.min.js"></script>
-	<script type="application/javascript" src="/js/bootstrap.min.js"></script>
-	<script type="application/javascript" src="/js/toastr.min.js"></script>
+  <script type="application/javascript" src="/js/jquery/jquery.min.js"></script>
+  <script type="application/javascript" src="/js/jquery/jquery-migrate.min.js"></script>
+  <script type="application/javascript" src="/js/bootstrap.min.js"></script>
+  <script type="application/javascript" src="/js/toastr.min.js"></script>
 
 </head>
 
 
 <body>
 
-	<div class="container">
-		<form>
-			<div class="icon-addon addon-lg" id="input-div">
-				<input type="text" placeholder="Add a keyword" class="form-control" id="keyword-input">
-				<label for="keyword-input" class="glyphicon glyphicon-question-sign"></label>
-		</form>
-		<div class="alert alert-danger" id="input-error">
-			Keyword already exists!
-		</div>
-		<div class="alert alert-warning" id="notification-warning">
-			You currently do not have any notifications enabled. If you would like to
-			recieve notifications, please make sure to check your options.
-		</div>
-		<div id="keyword-list">
-		</div>
-		<hr>
-		<div class="options-container">
-			<a class="options-anchor" href="/src/options/options.html">Options</a>
-		</div>
-	</div>
+  <div class="container">
+    <form>
+      <div class="icon-addon addon-lg" id="input-div">
+        <input type="text" placeholder="Add a keyword" class="form-control" id="keyword-input">
+        <label id="input-popover" for="keyword-input" class="glyphicon glyphicon-question-sign" data-container="body" data-toggle="popover"></label>
+    </form>
+    <div class="alert alert-danger" id="input-error">
+      Keyword already exists!
+    </div>
+    <div class="alert alert-warning" id="notification-warning">
+      You currently do not have any notifications enabled. If you would like to
+      recieve notifications, please make sure to check your options.
+    </div>
+    <div id="keyword-list">
+    </div>
+    <hr>
+    <div class="options-container">
+      <a class="options-anchor" href="/src/options/options.html">Options</a>
+    </div>
+  </div>
 
 </body>
 
