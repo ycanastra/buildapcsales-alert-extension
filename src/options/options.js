@@ -1,7 +1,6 @@
 $(document).ready(function(){
 	checkUserId();
-	initEmailInfo();
-	restoreSettings();
+	initSettings();
 
 	$('#save-button').on('click', function(e) {
 		e.preventDefault();
@@ -9,28 +8,32 @@ $(document).ready(function(){
 	});
 });
 
-function saveSettings() {
-	var emailIsChecked = $('#checkbox-email').is(':checked');
-	chrome.storage.sync.set({checkboxEmail: emailIsChecked});
-}
+function initSettings() {
+	chrome.storage.sync.get('userid', function(items) {
+		userid = items.userid;
 
-function restoreSettings() {
-	chrome.storage.sync.get('checkboxEmail', function(item) {
-		var emailIsChecked = item.checkboxEmail;
-		if (emailIsChecked) {
-			$('#checkbox-email').prop('checked', true);
+		if (userid) {
+			$.ajax({
+				type: 'post',
+				url: 'http://159.203.229.225/buildapcsales-alert/php/retrieve_settings.php',
+				data: {userid: userid},
+				dataType: 'json',
+				success: function(rsp, status) {
+					if (rsp) {
+						var email = rsp[0]['email'];
+						var emailOption = rsp[0]['email_option'];
+						$('#email-input').val(email);
+						if (emailOption == 1) {
+							$('#checkbox-email').prop('checked', true);
+						}
+						else {
+							$('#checkbox-email').prop('checked', false);
+						}
+					}
+				}
+			});
 		}
 	});
-}
-
-function getRandomToken() {
-	var randomPool = new Uint8Array(32);
-	crypto.getRandomValues(randomPool);
-	var hex = '';
-	for (var i = 0; i < randomPool.length; ++i) {
-		hex += randomPool[i].toString(16);
-	}
-	return hex;
 }
 
 function processSettings() {
@@ -53,11 +56,21 @@ function processSettings() {
 						"hideDuration": "500",
 						"timeOut": "5000"
 					}
-					toastr.success('Email has been submitted successfully!');
+					toastr.success('Settings has been submitted successfully!');
 				}
 			});
 		}
 	});
+}
+
+function getRandomToken() {
+	var randomPool = new Uint8Array(32);
+	crypto.getRandomValues(randomPool);
+	var hex = '';
+	for (var i = 0; i < randomPool.length; ++i) {
+		hex += randomPool[i].toString(16);
+	}
+	return hex;
 }
 
 function checkUserId() {
@@ -69,36 +82,4 @@ function checkUserId() {
 			chrome.storage.sync.set({userid: userid});
 		}
 	});
-}
-
-function initEmailInfo() {
-	chrome.storage.sync.get('userid', function(items) {
-		userid = items.userid;
-
-		if (userid) {
-			$.ajax({
-				type: 'post',
-				url: 'http://159.203.229.225/buildapcsales-alert/php/retrieve_email.php',
-				data: {userid: userid},
-				dataType: 'json',
-				success: function(rsp, status) {
-
-					if (rsp) {
-						email = rsp[0]['email'];
-						initEmailInput(email);
-						initEmailButton(email);
-					}
-					else {
-						emailButton = document.getElementById('emailButton');
-						emailButton.disabled = true;
-					}
-				}
-			});
-		}
-	});
-}
-
-function initEmailInput(email) {
-	var emailInput = document.getElementById('email-input');
-	emailInput.value = email;
 }
