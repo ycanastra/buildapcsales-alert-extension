@@ -75,13 +75,28 @@ function deleteKeywordRequest(closeButton) {
 }
 
 function checkSettings() {
-	chrome.storage.sync.get('checkboxEmail', function(item) {
-		var emailIsChecked = item.checkboxEmail;
-		if (!emailIsChecked) {
-			$('#notification-warning').show();
-		}
-		else {
-			$('#notification-warning').hide();
+	chrome.storage.sync.get('userid', function(items) {
+		userid = items.userid;
+
+		if (userid) {
+			$.ajax({
+				type: 'post',
+				url: 'http://159.203.229.225/buildapcsales-alert/php/retrieve_settings.php',
+				data: {userid: userid},
+				dataType: 'json',
+				success: function(rsp, status) {
+					if (rsp) {
+						var email = rsp[0]['email'];
+						var emailOption = rsp[0]['email_option'];
+						if (emailOption == 1) {
+							$('#notification-warning').hide();
+						}
+						else {
+							$('#notification-warning').show();
+						}
+					}
+				}
+			});
 		}
 	});
 }
