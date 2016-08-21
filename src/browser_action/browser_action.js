@@ -1,12 +1,10 @@
 $(document).ready(function(){
   initPopup();
   checkSettings();
-  $('#input-popover').popover({
-    trigger: 'hover',
-    content: 'This is where you add keywords for the products you want to recieve notifcations for.',
-    placement: 'left',
-    container: 'body'
-  });
+
+  $('#input-help-button').on('click', function() {
+    $('#input-help').slideToggle(200);
+  })
 
   $('#keyword-input').keypress(function(event) {
     if (event.which == 13) {
@@ -121,6 +119,7 @@ function initPopup() {
   checkUserId();
   retrieveKeywordsRequest();
   $('#input-error').hide();
+  $('#input-help').hide();
 }
 
 function checkUserId() {
