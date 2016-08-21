@@ -1,35 +1,12 @@
 $(document).ready(function(){
 	checkUserId();
 	initEmailInfo();
-
 	restoreSettings();
 
-	$('input').on('change', function() {
-		saveSettings();
-	});
-
-	$('a.close').on('click', function() {
-		$(this).parent().slideUp(200);
-	})
-
-	$('#emailInput').keypress(function(e) {
-		if(e.which == 13) {
-			e.preventDefault();
-			var emailButton = document.getElementById('emailButton');
-			emailButton.click();
-		}
-	})
-
-	$('#emailInput').keyup(function(e) {
-		var value = $(this).val()
-		initEmailButton(value)
-	})
-
-	$('#emailButton').click(function(e) {
+	$('#save-button').on('click', function(e) {
 		e.preventDefault();
-		var email = document.getElementById('emailInput').value;
-		processEmail(email);
-	})
+		processSettings();
+	});
 });
 
 function saveSettings() {
@@ -56,15 +33,16 @@ function getRandomToken() {
 	return hex;
 }
 
-function processEmail(email) {
+function processSettings() {
 	chrome.storage.sync.get('userid', function(items) {
-		userid = items.userid;
-
+		var userid = items.userid;
+		var email = $('#email-input').val();
+		var emailOption = ($('#checkbox-email').is(':checked')) ? 1 : 0;
 		if (userid) {
 			$.ajax({
 				type: 'post',
-				url: 'http://159.203.229.225/buildapcsales-alert/php/process_email.php',
-				data: {userid: userid, email: email},
+				url: 'http://159.203.229.225/buildapcsales-alert/php/process_settings.php',
+				data: {userid: userid, email: email, emailOption: emailOption},
 				dataType: 'json',
 				success: function(rsp, status) {
 					toastr.options = {
@@ -121,28 +99,6 @@ function initEmailInfo() {
 }
 
 function initEmailInput(email) {
-	var emailInput = document.getElementById('emailInput');
+	var emailInput = document.getElementById('email-input');
 	emailInput.value = email;
-}
-
-function initEmailButton(email) {
-	var emailButton = document.getElementById('emailButton')
-	var periodIndex = email.lastIndexOf('.');
-	var atIndex = email.indexOf('@');
-
-	if (atIndex == -1) {
-		emailButton.disabled = true;
-	}
-	else if (periodIndex == -1) {
-		emailButton.disabled = true;
-	}
-	else if (periodIndex - atIndex < 2) {
-		emailButton.disabled = true;
-	}
-	else if (email.length - periodIndex < 1) {
-		emailButton.disabled = true;
-	}
-	else {
-		emailButton.disabled = false;
-	}
 }
