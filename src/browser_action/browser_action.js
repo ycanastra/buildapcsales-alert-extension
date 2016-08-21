@@ -39,10 +39,10 @@ function addKeywordRequest(keywordInput) {
 				success: function(data) {
 					var alreadyExists = data;
 					if (alreadyExists) {
-						$('#input-error').slideDown(200);
-						$("#input-div").addClass('has-error');
+						showInputError();
 					}
 					else {
+						hideInputError();
 						addKeyword(keyword);
 						keywordInput.val('');
 					}
@@ -84,6 +84,16 @@ function checkSettings() {
 			$('#notification-warning').hide();
 		}
 	});
+}
+
+function showInputError() {
+	$('#input-error').slideDown(200);
+	$("#input-div").addClass('has-error');
+}
+
+function hideInputError() {
+	$('#input-error').slideUp(200);
+	$("#input-div").removeClass('has-error');
 }
 
 function initPopup() {
