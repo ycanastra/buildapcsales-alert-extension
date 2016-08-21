@@ -16,3 +16,6 @@ label {
 .settings-component-content {
   padding-left: 15px;
 }
+.glyphicon-remove {
+  font-size: smaller;
+}
