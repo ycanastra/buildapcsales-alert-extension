@@ -32,6 +32,9 @@ function addKeyword(keyword) {
 
 function addKeywordRequest(keywordInput) {
   var keyword = keywordInput.val();
+  if (keyword.length == 0) {
+    return;
+  }
   chrome.storage.sync.get('userid', function(items) {
     userid = items.userid;
     if (userid) {
