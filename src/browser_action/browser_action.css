@@ -3,6 +3,15 @@
   color: gray;
   display: block;
 }
+.form-control {
+  width: 100%;
+  top: 0px;
+  margin: 0px;
+  font-size: 20px;
+  padding: 10px;
+  height: 45px;
+  color: black;
+}
 .icon-addon .glyphicon {
   position: absolute;
   z-index: 2;
@@ -15,6 +24,7 @@
   top: 1px
 }
 .icon-addon.addon-lg .glyphicon {
+  position: absolute;
   font-size: 18px;
   margin-left: 0;
   left: calc(100% - 30px);
@@ -66,13 +76,6 @@ hr {
 }
 .form-group {
   margin:0px;
-}
-.form-control {
-  margin: 0px;
-  font-size: 20px;
-  padding: 10px;
-  height: 45px;
-  color: black;
 }
 .form-control::-webkit-input-placeholder {
    font-style: italic;
