@@ -120,6 +120,7 @@ function initPopup() {
   retrieveKeywordsRequest();
   $('#input-error').hide();
   $('#input-help').hide();
+  $('#notification-warning').hide();
 }
 
 function checkUserId() {

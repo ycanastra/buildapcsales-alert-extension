@@ -27,13 +27,60 @@
     </div>
     <div class="alert alert-info" id="input-help">
       This is where you add keywords for the products you want to recieve
-      notifcations for.
+      notifcations for. There are certain search operators that are available.
+      <br>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>How to use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>-</td>
+            <td>
+              When you put a dash before a word, it will exclude all posts
+              with titles containting that word.
+              <br>
+              Example: gtx 1080 -MIR
+            </td>
+          </tr>
+          <tr>
+            <td>d:</td>
+            <td>
+              This will only look for posts that are from the given domain name(s).
+              <br>
+              Example: monitor d:amazon.com d:bestbuy.com
+            </td>
+          </tr>
+          <tr>
+            <td>"</td>
+            <td>
+              This will search for exact words in the quotes.
+              <br>
+              Example: "i5 6500"
+            </td>
+          </tr>
+          <tr>
+            <td>*</td>
+            <td>
+              This is used as a wildcard character. When you put in inside a word,
+              it will search for all instances of the word with the wildcard character
+              replaced by a space, dash, and no wildcard character.
+              a dash.
+              <br>
+              Example: GTX*1080
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div class="alert alert-warning" id="notification-warning">
       You currently do not have any notifications enabled. If you would like to
       recieve notifications, please make sure to check your options.
     </div>
-    <div id="keyword-list">
+    <div id="keyword-list" class="scrollable">
     </div>
     <hr>
     <div class="options-container">

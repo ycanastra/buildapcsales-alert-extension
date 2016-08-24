@@ -1,3 +1,8 @@
+body {
+  min-height: 67px;
+  max-height: 800px
+  overflow: hidden;
+}
 .icon-addon {
   position: relative;
   color: gray;
@@ -28,10 +33,21 @@
   padding: 0px;
 }
 .options-container {
-  padding: 0px;
+  /*padding: 0px;
   margin: 0px;
   text-align: center;
-  font-weight: normal;
+  font-weight: normal;*/
+  /*position: fixed;*/
+  /*width: 100%;*/
+  /*bottom: 0px;*/
+  /*background-color: white;*/
+
+  background: white;
+  text-align: center;
+  position:fixed;
+  width:100%; /* (100% cause of fixed) */
+  bottom:0;
+  height:20px; /* see #page bottom value */
 }
 .options-anchor {
   padding: 0px;
@@ -86,6 +102,9 @@ hr {
 .form-group:hover i {
   color: black;
 }
+#keyword-list {
+  padding-bottom: 20px;
+}
 .keyword-list-item {
   height: 45px;
   padding: 10px;
@@ -106,4 +125,10 @@ hr {
 .close-button:hover {
   color: red;
   text-decoration: none;
+}
+table, th, td, thead, tbody {
+  border: 0px;
+}
+.table {
+  margin: 0px;
 }
