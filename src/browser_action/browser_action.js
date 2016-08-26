@@ -83,9 +83,17 @@ function deleteKeywordRequest(closeButton) {
 
 function checkSettings() {
   chrome.storage.sync.get('userid', function(items) {
-    userid = items.userid;
-
+    userid = items.userid
     if (userid) {
+      retrieveSettings(userid);
+    }
+    else {
+      userid = getRandomToken()
+      chrome.storage.sync.set({userid: userid}, function() {
+        retrieveSettings(userid);
+      })
+    }
+    function retrieveSettings(userid) {
       $.ajax({
         type: 'post',
         url: 'http://159.203.229.225/buildapcsales-alert/php/retrieve_settings.php',
@@ -119,21 +127,10 @@ function hideInputError() {
 }
 
 function initPopup() {
-  checkUserId();
   retrieveKeywordsRequest();
   $('#input-error').hide();
   $('#input-help').hide();
   $('#notification-warning').hide();
-}
-
-function checkUserId() {
-  chrome.storage.sync.get('userid', function(items) {
-    userid = items.userid
-    if (!userid) {
-      userid = getRandomToken()
-      chrome.storage.sync.set({userid: userid})
-    }
-  })
 }
 
 function getRandomToken() {
